@@ -56,11 +56,11 @@ app.get('/create-download-backup', (req, res) => {
     const backupFile = path.join(process.cwd(), 'pg_backup.sql');
 
     // Replace these with your actual values (or get from env)
-    const host = 'database-2.c1g8kac0u1k6.ap-south-1.rds.amazonaws.com';
-    const port = '5432';
-    const user = 'postgres';
-    const password = 'ynYBsv6dlNtvbunU0GjE'; // put your real password here
-    const database = 'postgres';
+    const host = process.env.host
+    const port = process.env.port
+    const user = process.env.user
+    const password = process.env.password
+    const database = process.env.database
 
     process.env.PGPASSWORD = password;
 
