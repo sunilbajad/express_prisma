@@ -39,15 +39,34 @@ export const createUser = async (req, res) => {
 
 //get all user 
 
+// export const getUser = async (req, res) => {
+//     try {
+//         const user = await prisma.user.findMany()
+
+//         return res.json({ status: 200, data: user, msg: "user Data" })
+//     } catch (error) {
+//         res.status(400).json({ error: error.message })
+//     }
+// }
+
 export const getUser = async (req, res) => {
     try {
-        const user = await prisma.user.findMany()
+        const userId = req.user.id; // comes from the decoded JWT
 
-        return res.json({ status: 200, data: user, msg: "user Data" })
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+        });
+
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        return res.json({ status: 200, data: user, msg: "User data" });
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        res.status(500).json({ error: error.message });
     }
-}
+};
+
 
 //login user 
 export const loginUser = async (req, res) => {
