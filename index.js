@@ -20,7 +20,7 @@ import routes from "./Routes/index.js"
 
 const receivedEvents = []; // You can store this in DB instead
 
-app.post("/sns-events", (req, res) => {
+app.post("//sns-events", (req, res) => {
     const snsMessageType = req.headers["x-amz-sns-message-type"];
     const body = req.body;
 
