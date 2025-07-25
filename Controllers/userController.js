@@ -3,6 +3,7 @@ import prisma from "../DB/db_config.js";
 import jwt from "jsonwebtoken"
 const JWT_SECRET = process.env.JWT_SECRET || JWT_SECRET
 
+
 //create user
 export const createUser = async (req, res) => {
     const { name, email, password } = req.body
@@ -92,6 +93,7 @@ export const loginUser = async (req, res) => {
         let id = user.id
         // Generate JWT token
         const token = jwt.sign({ id }, JWT_SECRET, { expiresIn: "1h" });
+
         // console.log("token", token)
         return res.json({ status: 200, data: user, msg: "user fetch", token: token })
     } catch (error) {

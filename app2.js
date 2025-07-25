@@ -1,22 +1,7 @@
-import express from "express"
-import cors from "cors"
-
-const app = express()
-
-const PORT = process.env.PORT || 4000
-
-app.use(cors())
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-
-app.get("/", (req, res) => {
-    return res.send("hello world")
-})
-
-//Routes file
-import routes from "./Routes/index.js"
-
+// const express = require("express");
+import express from 'express';
+const app = express();
+app.use(express.json());
 
 const receivedEvents = []; // You can store this in DB instead
 
@@ -44,6 +29,6 @@ app.get("/api/events", (req, res) => {
     res.json(receivedEvents); // Or fetch from DB
 });
 
-app.use(routes)
-
-app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`))
+app.listen(3000, () => {
+    console.log("API running on http://localhost:3000");
+});
