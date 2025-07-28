@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 // SNS Event Receiver
-app.post("//sns-events", (req, res) => {
+app.post("/sns-events", (req, res) => {
     const snsMessageType = req.headers["x-amz-sns-message-type"];
     const body = req.body;
 
